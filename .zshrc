@@ -1,6 +1,6 @@
-# zsh profile for OS X
+# zsh profile for macOS
 export ZSH="${HOME}/.oh-my-zsh"
-[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+[ -r ~/.zsh_aliases ] && source ~/.zsh_aliases
 
 export TERM='xterm-256color'
 
@@ -15,16 +15,18 @@ export PATH
 
 # plugins
 plugins=(
+  ansible
   brew
   emacs
   git
   history
   iterm2
   osx
+  terraform
   vagrant
 )
 
 # Bash completion compatibility
 autoload -Uz compinit && compinit
 
-source ${ZSH}/oh-my-zsh.sh
+[ -r ${ZSH}/oh-my-zsh.sh ] && source ${ZSH}/oh-my-zsh.sh
