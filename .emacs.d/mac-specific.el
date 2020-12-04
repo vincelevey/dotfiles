@@ -3,6 +3,8 @@
            (window-system))
   (when (fboundp 'ns-do-hide-emacs)
     (global-set-key (kbd "M-h") 'ns-do-hide-emacs))
+  
+  (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 
   (setq delete-by-moving-to-trash t)
   (setq mac-command-modifier 'meta)
