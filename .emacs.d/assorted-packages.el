@@ -48,6 +48,9 @@
              (set-buffer-modified-p mod))))
     nil)
   (add-hook 'terraform-mode-hook #'terraform-mode-hackery)
+  (add-hook 'terraform-mode-hook #'display-line-numbers-mode)
   (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :init
+  (add-hook 'yaml-mode-hook #'display-line-numbers-mode))
