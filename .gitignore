@@ -3,8 +3,8 @@
 \#*\#
 .#*
 
-# ignore OS X .DS_Store files
-.DS_Store
+# ignore macOS .DS_Store files
+**/.DS_Store
 
-# ignore YARD working directory
-.yardoc
+# ignore the .vscode folder
+**/.vscode
