@@ -1,7 +1,7 @@
-(defconst PRINTER_NAME "SecurePrint_RPS1"
+(defconst PRINTER_NAME "Floorplate_printer"
   "Printer to use within Emacs")
 
-(defconst MY_PRINTER (concat "//" "EXXCMPCANRPS1.cmpd1.metoffice.gov.uk"
+(defconst MY_PRINTER (concat "//" "some.dnsdomainname"
                              "/" PRINTER_NAME)
   "UNC location of printer")
 

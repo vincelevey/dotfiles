@@ -1,11 +1,14 @@
 ;;; -*- lexical-binding: t -*-
+
 (when window-system
-  (global-set-key (kbd "C-x C-c") nil)
-  (global-set-key (kbd "C-x C-z") nil)
+  (unbind-key "C-x C-c")
+  (unbind-key "C-x C-d")
+  (unbind-key "C-x C-z")
+  (unbind-key "M-o")
 
   ;; set transparency
-  (set-frame-parameter (selected-frame) 'alpha '(95 95))
-  (add-to-list 'default-frame-alist '(alpha 95 95))
+  ;(set-frame-parameter (selected-frame) 'alpha '(95 95))
+  ;(add-to-list 'default-frame-alist '(alpha 95 95))
 
   (when (eq window-system 'x)
     (global-unset-key [M-mouse-1])

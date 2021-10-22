@@ -1,0 +1,41 @@
+[user]
+	name = Vince Levey
+	email = vincel@vincel.org
+[core]
+	editor = /usr/local/opt/emacs-mac/bin/emacsclient -a "" -c
+	excludesfile = /Users/vincel/.gitignore
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        last = log --color --date=short --pretty=format:'%Cred%h %Cgreen%ad %Creset%s %C(bold blue)<%an>%Creset' -10
+	st = status
+	co = checkout
+	br = branch
+        sync = pull --rebase
+[push]
+        default = simple
+[rebase]
+        autoStash = true
+        autoSquash = true
+
+[pull]
+	ff = only
+
+[diff]
+        tool = launchp4merge
+[difftool]
+        prompt = false
+[difftool "launchp4merge"]
+        cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$LOCAL" "$REMOTE"
+        keepBackup = false
+        keepTemporaries = false
+        trustExitCode = false
+
+[merge]
+        tool = launchp4merge
+[mergetool]
+        prompt = false
+[mergetool "launchp4merge"]
+        cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+        keepBackup = false
+        keepTemporaries = false
+        trustExitCode = false

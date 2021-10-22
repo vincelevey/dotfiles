@@ -1,28 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 (setenv "PAGER" "cat")
-
-;;(eshell-git-prompt-use-theme 'robbyrussell)
-
-;; (setq eshell-prompt-regexp "^[^#%\n]*[#%] "
-;;       eshell-prompt-function
-;;       (lambda nil
-;;         (concat
-;;          "[" (user-login-name) "@" (system-name) ":"
-;;          (if (string= (eshell/pwd) (getenv "HOME"))
-;;              "~" (eshell/basename (eshell/pwd)))
-;;          "]"
-;;          (if (= (user-uid) 0) "# " "% ")
-;;          )))
-
-;;; like the default, but with "%" instead of "$"
-;; (setq eshell-prompt-regexp "^[^#%\n]*[#%] "
-;;       eshell-prompt-function
-;;       (lambda nil
-;;         (concat
-;;          (if (string= (eshell/pwd) (getenv "HOME"))
-;;              "~" (eshell/basename (eshell/pwd)))
-;;          (if (= (user-uid) 0) " # " " % ")
-;;          )))
         
 (use-package eshell
   :init
@@ -38,6 +15,7 @@
               (eshell/alias "d" "dired $1")
               (eshell/alias "e" "find-file $1")
               (eshell/alias "h" "history")
+              (eshell/alias "less" "find-file-read-only $1")
               (eshell/alias "ll" "ls -l $*")
 
               (let ((df (if (file-exists-p "/usr/local/bin/gdf")

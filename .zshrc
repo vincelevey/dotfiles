@@ -15,14 +15,13 @@ export PATH
 
 # plugins
 plugins=(
-  ansible
   brew
-  emacs
   git
+  helm
   history
   iterm2
+  minikube
   osx
-  terraform
   vagrant
 )
 

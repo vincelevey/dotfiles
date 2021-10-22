@@ -22,6 +22,7 @@
   (package-install 'use-package))
 
 ;; enable use-package
+(setq use-package-always-ensure t)
 (setq use-package-verbose t)
 (require 'use-package)
 
@@ -45,19 +46,31 @@
 (load-user-file "when-window-system")
 (load-user-file "whitespace")
 
-;; puppet erb minor mode
-;(load "~/.emacs.d/custom-packages/eruby-mode")
-
 ;; variables not set in custom-file
 (setq-default
  default-fill-column 71
  default-major-mode 'text-mode
- frame-title-format '("%b"))
+ frame-title-format '("%b")
+ )
+
+(setq
+ inhibit-startup-screen t
+ initial-major-mode 'text-mode
+ initial-scratch-message nil
+ kill-whole-line t
+ ring-bell-function 'ignore
+ sentence-end-double-space nil
+ )
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; highlight the current line
-(global-hl-line-mode +1)
+;; highlight the current line for selected major modes
+(require 'hl-line)
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
+
+;; selectively turn on line numbers
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (put 'downcase-region  'disabled nil)
 (put 'upcase-region    'disabled nil)

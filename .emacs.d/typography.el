@@ -2,7 +2,7 @@
 
 (when (and (eq system-type 'darwin)
            (member "Iosevka" (font-family-list)))
-  (set-face-attribute 'default nil :family "Iosevka" :height 130))
+  (set-face-attribute 'default nil :family "Iosevka" :height 140))
 
 ;; (when (and (eq system-type 'windows-nt)
 ;;            (member "Cascadia" (font-family-list)))
@@ -17,3 +17,6 @@
 ;; ligature support
 (when (fboundp 'mac-auto-operator-composition-mode)
   (mac-auto-operator-composition-mode))
+
+(unless (member "all-the-icons" (font-family-list))
+  (all-the-icons-install-fonts t))

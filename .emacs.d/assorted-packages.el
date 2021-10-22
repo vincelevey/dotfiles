@@ -1,38 +1,60 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package ansible
-  :ensure yaml-mode
-  :config
-  (add-hook 'yaml-mode-hook #'(lambda () (ansible 1))))
+(use-package all-the-icons)
+
+(use-package all-the-icons-dired
+  :after all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package bind-key
   :bind (("C-x C-b" . buffer-menu)
          ("M-j"     . (lambda () (interactive) (delete-indentation -1)))
-         ("<f5>"    . ispell-buffer)
-         ("<f6>"    . ispell-region)
-         ("<f8>"    . canonically-space-region)
+         ("<f1>"    . undo)
          ("<f12>"   . (lambda () (interactive) (switch-to-buffer "*scratch*")))
+         ("<f13>"   . mac-toggle-tab-group-overview)
          ))
 
+(use-package dockerfile-mode
+  :mode "Dockerfile\\'")
+
+(use-package doom-modeline
+  :if (display-graphic-p)
+  :config (doom-modeline-mode))
+
+(use-package highlight-indent-guides
+  :if (display-graphic-p)
+  :commands (highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive 'top))
+
 (use-package ipcalc)
+
+(use-package ispell
+  :init
+  (setq ispell-program-name "/usr/local/bin/hunspell")
+  :config
+  (setq ispell-hunspell-add-multi-dic "en_GB")
+  (setq ispell-dictionary "en_GB"))
 
 (use-package json-mode
   :pin gnu)
 
-(use-package magit)
+(use-package magit
+  :bind (("C-x g"   . magit-status)
+         ("C-x C-g" . magit-status)
+         ))
 
 (use-package markdown-mode)
 
+(use-package material-theme
+  :ensure t
+  :config
+  (load-theme 'material t))
+
 (use-package smartparens
   :ensure yaml-mode
-  :config
-  (add-hook 'yaml-mode-hook #'smartparens-mode))
-
-(use-package spacemacs-common
-  :if window-system
-  :ensure spacemacs-theme
-  :config
-  (load-theme 'spacemacs-dark t nil))
+  :hook (yaml-mode . smartparens-mode))
 
 (use-package terraform-mode
   :init
@@ -41,16 +63,15 @@
            (let* ((mod (buffer-modified-p)))
              (insert
               "/**\n"
-              "* ## Title: level 2 heading\n"
+              "* # Title: level 1 heading\n"
               "*\n"
               "* Description\n"
               "*/\n")
              (set-buffer-modified-p mod))))
     nil)
-  (add-hook 'terraform-mode-hook #'terraform-mode-hackery)
-  (add-hook 'terraform-mode-hook #'display-line-numbers-mode)
-  (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+  :hook ((terraform-mode . terraform-mode-hackery)
+         (terraform-mode . terraform-format-on-save-mode)))
 
 (use-package yaml-mode
-  :init
-  (add-hook 'yaml-mode-hook #'display-line-numbers-mode))
+  :hook ((yaml-mode . display-line-numbers-mode)
+         (yaml-mode . highlight-indent-guides-mode)))
