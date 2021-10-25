@@ -34,10 +34,8 @@
 (load-user-file "assorted-packages")
 (load-user-file "buffers")
 (load-user-file "date-time")
-(load-user-file "dired")
 (load-user-file "emacs-client")
 (load-user-file "html")
-(load-user-file "mac-specific")
 (load-user-file "my-functions")
 (load-user-file "shell")
 (load-user-file "text-editing")
@@ -57,7 +55,6 @@
  inhibit-startup-screen t
  initial-major-mode 'text-mode
  initial-scratch-message nil
- kill-whole-line t
  ring-bell-function 'ignore
  sentence-end-double-space nil
  )
