@@ -101,6 +101,8 @@
   :hook ((terraform-mode . terraform-mode-hackery)
          (terraform-mode . terraform-format-on-save-mode)))
 
+(use-package vterm)
+
 (use-package yaml-mode
   :hook ((yaml-mode . display-line-numbers-mode)
          (yaml-mode . highlight-indent-guides-mode)))

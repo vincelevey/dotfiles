@@ -1,3 +1,4 @@
+# -*- mode: sh -*-
 # aliases for macOS
 alias cal='ncal -w'
 alias ci='vi'

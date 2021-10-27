@@ -1,7 +1,5 @@
 # zsh profile for macOS
 export ZSH="${HOME}/.oh-my-zsh"
-[ -r ~/.zsh_aliases ] && source ~/.zsh_aliases
-
 export TERM='xterm-256color'
 
 # eshell-style prompt with return code colours
@@ -28,4 +26,6 @@ plugins=(
 # Bash completion compatibility
 autoload -Uz compinit && compinit
 
+[ -r ~/.zsh_aliases ] && source ~/.zsh_aliases
+[[ "$INSIDE_EMACS" = 'vterm' && -r ~/.zsh_vterm ]] && source ~/.zsh_vterm
 [ -r ${ZSH}/oh-my-zsh.sh ] && source ${ZSH}/oh-my-zsh.sh

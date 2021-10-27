@@ -37,7 +37,7 @@
 (load-user-file "emacs-client")
 (load-user-file "html")
 (load-user-file "my-functions")
-(load-user-file "shell")
+;(load-user-file "shell")
 (load-user-file "text-editing")
 (load-user-file "typography")
 (load-user-file "tmpfiles")
