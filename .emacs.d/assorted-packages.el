@@ -9,9 +9,9 @@
 (use-package bind-key
   :bind (("C-x C-b" . buffer-menu)
          ("M-j"     . (lambda () (interactive) (delete-indentation -1)))
-         ("<f1>"    . undo)
-         ("<f12>"   . (lambda () (interactive) (switch-to-buffer "*scratch*")))
-         ("<f13>"   . mac-toggle-tab-group-overview)
+         ([f1]      . undo)
+         ([f12]     . (lambda () (interactive) (switch-to-buffer "*scratch*")))
+         ([f13]     . mac-toggle-tab-group-overview)
          ))
 
 (use-package dired
@@ -37,6 +37,21 @@
              dired-use-ls-dired t))
         ))
     ))
+
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (add-hook 'dired-sidebar-mode-hookterm
+            (lambda ()
+              (unless (file-remote-p default-directory)
+                (auto-revert-mode))))
+  :config
+  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+  (setq dired-sidebar-theme 'icons)
+  (setq dired-sidebar-use-custom-font t))
 
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
@@ -101,7 +116,16 @@
   :hook ((terraform-mode . terraform-mode-hackery)
          (terraform-mode . terraform-format-on-save-mode)))
 
-(use-package vterm)
+(use-package vterm
+  :defer t)
+
+(use-package vterm-toggle
+  :config
+  (setq vterm-toggle-scope 'project)
+  :bind (("C-c t" . vterm-toggle)
+         ("s-n"   . vterm-toggle-forward)
+         ("s-p"   . vterm-toggle-backward)
+         ))
 
 (use-package yaml-mode
   :hook ((yaml-mode . display-line-numbers-mode)
