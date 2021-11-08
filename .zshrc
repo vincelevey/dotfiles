@@ -13,13 +13,14 @@ export PATH
 
 # plugins
 plugins=(
+  aws
   brew
   git
   helm
   history
   iterm2
+  macos
   minikube
-  osx
   vagrant
 )
 

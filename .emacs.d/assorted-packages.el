@@ -1,10 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package all-the-icons)
-
-(use-package all-the-icons-dired
-  :after all-the-icons
-  :hook (dired-mode . all-the-icons-dired-mode))
+(use-package all-the-icons
+  :when (display-graphic-p)
+  :config
+  (when (not (member "all-the-icons" (font-family-list)))
+    (all-the-icons-install-fonts t)))
 
 (use-package bind-key
   :bind (("C-x C-b" . buffer-menu)
@@ -13,6 +13,9 @@
          ([f12]     . (lambda () (interactive) (switch-to-buffer "*scratch*")))
          ([f13]     . mac-toggle-tab-group-overview)
          ))
+
+(use-package deadgrep
+  :bind (("C-c g" . deadgrep)))
 
 (use-package dired
   :ensure nil
@@ -38,30 +41,16 @@
         ))
     ))
 
-(use-package dired-sidebar
-  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
-  :ensure t
-  :commands (dired-sidebar-toggle-sidebar)
-  :init
-  (add-hook 'dired-sidebar-mode-hookterm
-            (lambda ()
-              (unless (file-remote-p default-directory)
-                (auto-revert-mode))))
-  :config
-  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
-  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-  (setq dired-sidebar-theme 'icons)
-  (setq dired-sidebar-use-custom-font t))
-
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
 (use-package doom-modeline
-  :if (display-graphic-p)
+  :requires all-the-icons
+  :when (display-graphic-p)
   :config (doom-modeline-mode))
 
 (use-package highlight-indent-guides
-  :if (display-graphic-p)
+  :when (display-graphic-p)
   :commands (highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-method 'character)
@@ -80,7 +69,7 @@
   :pin gnu)
 
 (use-package keychain-environment
-  :if (string-equal system-type "darwin")
+  :when (string-equal system-type "darwin")
   :config
   (keychain-refresh-environment))
 

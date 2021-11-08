@@ -7,6 +7,4 @@
 (delete-selection-mode t)
 (column-number-mode)
 
-(setq
- create-lockfiles nil
- )
+(setq-default create-lockfiles nil)

@@ -10,7 +10,7 @@
     ;; set transparency
     ;(set-frame-parameter (selected-frame) 'alpha '(95 95))
     ;(add-to-list 'default-frame-alist '(alpha 95 95))
-    
+
     (when (fboundp 'ns-do-hide-emacs)
       (global-set-key (kbd "M-h") 'ns-do-hide-emacs))
 

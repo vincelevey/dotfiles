@@ -8,19 +8,19 @@
  '(eshell-history-size 2000)
  '(inhibit-startup-echo-area-message "vincel")
  '(initial-buffer-choice t)
- '(mac-frame-tabbing t)
+ '(mac-frame-tabbing nil)
  '(markdown-command "~/bin/Markdown.pl")
  '(markdown-indent-on-enter nil)
  '(mouse-yank-at-point t)
  '(package-selected-packages
-   '(dockerfile-mode all-the-icons-dired rainbow-delimeters doom-modeline keychain-environment magit highlight-indent-guides material-theme yaml-mode use-package terraform-mode smartparens markdown-mode json-mode ipcalc))
+   '(deadgrep vterm-toggle vterm dockerfile-mode doom-modeline keychain-environment magit highlight-indent-guides material-theme yaml-mode use-package terraform-mode smartparens markdown-mode json-mode ipcalc))
  '(ps-paper-type 'a4)
  '(ring-bell-function 'ignore)
  '(scroll-conservatively 5)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
- '(user-mail-address "vincel@myprivacy.ca")
+ '(user-mail-address "vincel@vincel.org")
  '(window-divider-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
