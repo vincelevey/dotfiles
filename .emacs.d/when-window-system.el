@@ -26,8 +26,6 @@
      locate-make-command-line 'locate-use-mdfind-name
      mac-command-modifier 'meta
      mac-option-modifier 'super
-     mac-right-command-modifier nil
-     mac-right-option-modifier nil
      mouse-drag-copy-region t
      select-active-regions 'only
      ))

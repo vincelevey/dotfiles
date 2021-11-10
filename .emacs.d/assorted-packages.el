@@ -15,7 +15,7 @@
          ))
 
 (use-package deadgrep
-  :bind (("C-c g" . deadgrep)))
+  :bind (("s-g" . deadgrep)))
 
 (use-package dired
   :ensure nil
@@ -42,7 +42,7 @@
     ))
 
 (use-package dired-sidebar
-  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :bind (("s-d" . dired-sidebar-toggle-sidebar))
   :ensure t
   :commands (dired-sidebar-toggle-sidebar)
   :init
@@ -126,9 +126,9 @@
 (use-package vterm-toggle
   :config
   (setq vterm-toggle-scope 'project)
-  :bind (("C-c t" . vterm-toggle)
-         ("s-n"   . vterm-toggle-forward)
-         ("s-p"   . vterm-toggle-backward)
+  :bind (("s-t" . vterm-toggle)
+         ("s-n" . vterm-toggle-forward)
+         ("s-p" . vterm-toggle-backward)
          ))
 
 (use-package yaml-mode
