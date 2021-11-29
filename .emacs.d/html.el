@@ -1,4 +1,5 @@
-;; XEmacs breakage
+;;; -*- lexical-binding: t -*-
+
 (unless (featurep 'xemacs)
   (defun set-keymap-name (map name)
     "Used in XEmacs to set the name of the keymap (for debugging
@@ -14,4 +15,4 @@ purposes only)."
             (setq font-lock-defaults '(jwz-html-font-lock-keywords t))
             ))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . jwz-html-mode))
-(add-to-list 'auto-mode-alist '("\\.xml\\'" . jwz-html-mode))
+(add-to-list 'auto-mode-alist '("\\.xml\\'"   . jwz-html-mode))

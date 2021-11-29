@@ -15,7 +15,7 @@
          ))
 
 (use-package deadgrep
-  :bind (("s-g" . deadgrep)))
+  :bind (("C-x g" . deadgrep)))
 
 (use-package dired
   :ensure nil
@@ -42,7 +42,7 @@
     ))
 
 (use-package dired-sidebar
-  :bind (("s-d" . dired-sidebar-toggle-sidebar))
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
   :ensure t
   :commands (dired-sidebar-toggle-sidebar)
   :init
@@ -50,12 +50,14 @@
             (lambda ()
               (unless (file-remote-p default-directory)
                 (auto-revert-mode))))
+  :custom
+  (dired-sidebar-face '(:family "Monaco" :height 140))
   :config
   (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
   (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-  (setq dired-sidebar-theme 'nerd)
+  (setq dired-sidebar-theme 'vscode)
   (setq dired-sidebar-use-custom-font t))
-
+  
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
@@ -89,8 +91,8 @@
   (keychain-refresh-environment))
 
 (use-package magit
-  :bind (("C-x g"   . magit-status)
-         ("C-x C-g" . magit-status)
+  :bind (("C-x m"   . magit-status)
+         ("C-x C-m" . magit-status)
          ))
 
 (use-package markdown-mode)
@@ -120,15 +122,17 @@
   :hook ((terraform-mode . terraform-mode-hackery)
          (terraform-mode . terraform-format-on-save-mode)))
 
+(use-package vscode-icon)
+
 (use-package vterm
   :defer t)
 
 (use-package vterm-toggle
   :config
   (setq vterm-toggle-scope 'project)
-  :bind (("s-t" . vterm-toggle)
-         ("s-n" . vterm-toggle-forward)
-         ("s-p" . vterm-toggle-backward)
+  :bind (("C-x t" . vterm-toggle)
+         ("s-n"   . vterm-toggle-forward)
+         ("s-p"   . vterm-toggle-backward)
          ))
 
 (use-package yaml-mode
