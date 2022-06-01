@@ -7,20 +7,36 @@
     (all-the-icons-install-fonts t)))
 
 (use-package bind-key
-  :bind (("C-x C-b" . buffer-menu)
+  :bind (("C-x C-b" . ibuffer)
          ("M-j"     . (lambda () (interactive) (delete-indentation -1)))
          ([f1]      . undo)
          ([f12]     . (lambda () (interactive) (switch-to-buffer "*scratch*")))
          ([f13]     . mac-toggle-tab-group-overview)
          ))
 
+(use-package csharp-mode
+  :defer t
+  :init
+  (add-hook 'csharp-mode-hook
+            (lambda ()
+              (setq c-basic-offset 2)
+              (electric-pair-local-mode 1)
+              )
+            ))
+
 (use-package deadgrep
-  :bind (("C-x g" . deadgrep)))
+  :after (project)
+  :bind (("C-x g" . #'deadgrep)))
+
+(use-package diminish)
 
 (use-package dired
   :ensure nil
   :config
   (progn
+    (when (> emacs-major-version 25)
+      (define-key dired-mode-map [mouse-2] #'dired-mouse-find-file))
+    
     (when (eq system-type 'darwin)
       (setq dired-guess-shell-alist-user
             (list
@@ -41,23 +57,6 @@
         ))
     ))
 
-(use-package dired-sidebar
-  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
-  :ensure t
-  :commands (dired-sidebar-toggle-sidebar)
-  :init
-  (add-hook 'dired-sidebar-mode-hook
-            (lambda ()
-              (unless (file-remote-p default-directory)
-                (auto-revert-mode))))
-  :custom
-  (dired-sidebar-face '(:family "Monaco" :height 140))
-  :config
-  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
-  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
-  (setq dired-sidebar-theme 'vscode)
-  (setq dired-sidebar-use-custom-font t))
-  
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
@@ -65,6 +64,17 @@
   :requires all-the-icons
   :when (display-graphic-p)
   :config (doom-modeline-mode))
+
+(use-package git-timemachine)
+
+(use-package go-mode
+  :init
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'gofmt-before-save)
+              (setq tab-width 2)
+              )
+            ))
 
 (use-package highlight-indent-guides
   :when (display-graphic-p)
@@ -102,6 +112,9 @@
   :config
   (load-theme 'material t))
 
+;; required for deadgrep
+(use-package project)
+
 (use-package smartparens
   :ensure yaml-mode
   :hook (yaml-mode . smartparens-mode))
@@ -120,9 +133,11 @@
              (set-buffer-modified-p mod))))
     nil)
   :hook ((terraform-mode . terraform-mode-hackery)
-         (terraform-mode . terraform-format-on-save-mode)))
+         (terraform-mode . terraform-format-on-save-mode)
+         (terraform-mode . ws-butler-mode)))
 
-(use-package vscode-icon)
+(use-package typescript-mode
+  :defer t)
 
 (use-package vterm
   :defer t)
@@ -135,6 +150,11 @@
          ("s-p"   . vterm-toggle-backward)
          ))
 
+(use-package ws-butler
+  :diminish ws-butler-mode
+  )
+
 (use-package yaml-mode
   :hook ((yaml-mode . display-line-numbers-mode)
-         (yaml-mode . highlight-indent-guides-mode)))
+         (yaml-mode . highlight-indent-guides-mode)
+         (yaml-mode . ws-butler-mode)))

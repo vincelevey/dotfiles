@@ -39,8 +39,8 @@
 (load-user-file "my-functions")
 ;(load-user-file "shell")
 (load-user-file "text-editing")
-(load-user-file "typography")
 (load-user-file "tmpfiles")
+(load-user-file "typography")
 (load-user-file "when-window-system")
 (load-user-file "whitespace")
 
@@ -73,5 +73,11 @@
 (put 'upcase-region    'disabled nil)
 (put 'eval-expression  'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+
+;; fuck you python
+(setq
+ python-indent-guess-indent-offset t
+ python-indent-guess-indent-offset-verbose nil
+ )
 
 ;; .emacs ends here

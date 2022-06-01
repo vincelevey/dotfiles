@@ -16,6 +16,7 @@
 
     (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
     (global-set-key [mouse-2] 'mouse-yank-at-click)
+    (global-set-key [mouse-3] 'clipboard-yank)
 
     ;; use Spotlight under macOS instead of locate
     (defun locate-use-mdfind-name (search-string)

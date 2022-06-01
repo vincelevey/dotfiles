@@ -16,3 +16,5 @@ purposes only)."
             ))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . jwz-html-mode))
 (add-to-list 'auto-mode-alist '("\\.xml\\'"   . jwz-html-mode))
+;; csproj and other msbuild-style project files
+(add-to-list 'auto-mode-alist '("\\.[^.]*proj\\'" . jwz-html-mode))

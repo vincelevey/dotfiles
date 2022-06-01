@@ -11,8 +11,6 @@
   (fmakunbound function)
   (apply 'autoload function other-autoload-args))
 
-
-
 (defun chmod (mode)
   "Set the mode of the current file, in octal, as per the chmod program.
 If the current file doesn't exist yet the buffer is saved to create it."
@@ -36,8 +34,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
                cnt (- (point-max) (point-min)))
       cnt)))
 
-
-
 (defun shell-script-mode-hackery ()
   (cond ((<= (count-lines-buffer (current-buffer)) 1)
 	 (forward-line 1)
@@ -47,7 +43,7 @@ If the current file doesn't exist yet the buffer is saved to create it."
 	   (insert
             "#!/bin/bash\n"
             "# -*- tab-width: 2; indent-tabs-mode: nil; -*-\n"
-	    "# Crown Copyright (c) " year "\n"
+	    "# Copyright (c) " year " Huboo\n"
             "#\n"
             "# Written by " user-full-name " <" user-mail-address ">\n"
 	    "# Created: "
@@ -61,7 +57,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
   nil)
 (add-hook 'sh-mode-hook 'shell-script-mode-hackery)
 
-
 (defun perl-mode-hackery ()
   (cond ((<= (count-lines-buffer (current-buffer)) 1)
 	 (forward-line 1)
@@ -70,7 +65,7 @@ If the current file doesn't exist yet the buffer is saved to create it."
                 (year (substring s 20 24)))
 	   (insert
             "#!/usr/bin/perl -w\n"
-            "# Crown Copyright (c) " year "\n"
+            "# Copyright (c) " year " Huboo\n"
             "#\n"
             "# Written by " user-full-name " <" user-mail-address ">\n"
 	    "# Created: "
@@ -119,7 +114,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
 (add-hook 'perl-mode-hook 'perl-mode-hackery)
 (add-hook 'cperl-mode-hook 'perl-mode-hackery)
 
-
 (defun new-shell ()
   (interactive)
   (if (not (get-buffer "*shell*"))
@@ -136,12 +130,10 @@ If the current file doesn't exist yet the buffer is saved to create it."
 	(rename-buffer "*shell*"))
       (switch-to-buffer buffer))))
 
-
 (defun sortuniq-region (start end)
   (interactive "*r")
   (shell-command-on-region start end "sort --unique" t t))
 
-
 (defun dict (word)
   (interactive (list
 		(let* ((w (current-word))
@@ -155,7 +147,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
 	    word)
            "NEW-WINDOW"))
 
-
 (defun google (&optional string)
   (interactive (list
 		(let* ((w (current-word))
@@ -165,7 +156,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
 	   (concat "http://www.google.com/search?q=" string)
            "NEW-WINDOW"))
 
-
 (defun my-insert-changelog-header ()
   (interactive nil)
   (insert
@@ -176,7 +166,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
 
 (fset 'clog 'my-insert-changelog-header)
 
-
 (defun new-scratch ()
   "Create and/or select a proper *scratch* buffer."
    (interactive)
@@ -185,7 +174,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
    (setq default-directory "~/") ; note: can be buffer-specific
    (funcall initial-major-mode))
 
-
 (defun dos2unix ()
   (interactive)
   (goto-char (point-min))
@@ -196,7 +184,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
   (goto-char (point-min))
   (while (search-forward "\n" nil t) (replace-match "\r\n")))
 
-
 (defun remove-newlines (start end)
   "Removes newlines from a region."
   (interactive "r")
@@ -209,7 +196,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
         (delete-indentation)
         (forward-line 1)))))
 
-
 (defun vincel-cite-region (start end)
   "Fill a region as a mail citation."
   (interactive "r")
@@ -220,7 +206,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
       (let ((fill-prefix "> "))
         (fill-region-as-paragraph start (+ end 2))))))
 
-
 (defun vincel-slice (arg)
   "Insert the contents of a file into the buffer, preceding it with a
 \"cut here\" type of indicator line."
@@ -234,7 +219,6 @@ If the current file doesn't exist yet the buffer is saved to create it."
     (insert-file-contents arg)
     ))
 
-
 (defmacro vincel-ignore-errors (&rest body)
   "Execute BODY; if an error occurs, return nil.
 Otherwise, return result of last form in BODY.
@@ -290,5 +274,3 @@ characters (smart quotes, etc.) with their saner cousins."
          (version (rpm-spec-field-value "Version" max)))
     (rpm-add-change-log-entry (concat "Upgrade version to " version))
     ))
-
-;;; functions.el ends here
