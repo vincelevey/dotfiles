@@ -1,6 +1,7 @@
 # zsh profile for OS X
 export ZSH="${HOME}/.oh-my-zsh"
 export TERM='xterm-256color'
+export LESS='-FR'
 
 DEFAULT_USER=$USERNAME
 ZSH_THEME='agnoster'
@@ -29,4 +30,3 @@ if [[ $TERM_PROGRAM == 'vscode' ]]; then
 else
   alias rg='rg --smart-case --hidden'
 fi
-
