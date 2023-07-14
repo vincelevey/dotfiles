@@ -1,0 +1,17 @@
+{
+    "cSpell.language": "en-GB",
+    "editor.fontFamily": "Iosevka, 'Cascadia Code', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.shellIntegration.enabled": false,
+    "workbench.colorTheme": "GitHub Dark",
+    "workbench.startupEditor": "none",
+
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    }
+}

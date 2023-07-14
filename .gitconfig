@@ -1,50 +1,44 @@
 [user]
 	name = Vince Levey
 	email = vincel@vincel.org
-[init]
-	defaultBranch = main
+#	signingKey = key::ssh-ed25519 AAAA... email.addr
+
+#[http]
+#	proxy = proxy-server:8080
+#	sslBackend = schannel
+
 [core]
-	editor = /usr/local/opt/emacs-mac/bin/emacsclient -a "" -c
-	excludesfile = /Users/vincel/.gitignore
-	pager = less -FRX
+	autocrlf = true
+	editor = code --wait
+
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-        last = log --color --date=short --pretty=format:'%Cred%h %Cgreen%ad %Creset%s %C(bold blue)<%an>%Creset' -10
+    last = log --color --date=short --pretty=format:'%Cred%h %Cgreen%ad %Creset%s %C(bold blue)<%an>%Creset' -10
 	st = status
 	co = checkout
 	br = branch
         sync = pull --rebase
+
 [push]
-	default = simple
-[rebase]
-        autoStash = true
-        autoSquash = true
+	default = current
+	autoSetupRemote = true
 
 [pull]
 	ff = only
 
-[diff]
-        tool = launchp4merge
-[difftool]
-        prompt = false
-[difftool "launchp4merge"]
-        cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$LOCAL" "$REMOTE"
-        keepBackup = false
-        keepTemporaries = false
-        trustExitCode = false
+[rebase]
+        autoStash = true
+        autoSquash = true
 
+[gpg]
+	format = ssh
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[difftool]
+	prompt = false
 [merge]
-        tool = launchp4merge
-[mergetool]
-        prompt = false
-[mergetool "launchp4merge"]
-        cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-        keepBackup = false
-        keepTemporaries = false
-        trustExitCode = false
-[difftool "sourcetree"]
-	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-	trustExitCode = true
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
