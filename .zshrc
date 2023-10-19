@@ -1,4 +1,4 @@
-# zsh profile for OS X
+# zsh profile for macOS
 export ZSH="${HOME}/.oh-my-zsh"
 export TERM='xterm-256color'
 export LESS='-FR'
@@ -14,14 +14,14 @@ plugins=(
   ripgrep
 )
 
-# Bash completion compatibility
-autoload -Uz compinit && compinit
-
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
   plugins+=(iterm2)
   zstyle :omz:plugins:iterm2 shell-integration yes
 fi
 source ${ZSH}/oh-my-zsh.sh
+
+# Bash completion compatibility
+autoload -Uz compinit && compinit
 
 if [[ $TERM_PROGRAM == 'vscode' ]]; then
   alias rg='rg --smart-case --hidden --no-heading --column'

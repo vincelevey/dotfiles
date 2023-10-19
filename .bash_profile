@@ -61,7 +61,7 @@ no_proxy='*.domain'
 export HTTP_PROXY HTTPS_PROXY http_proxy https_proxy ftp_proxy rsync_proxy no_proxy
 
 # cert for iBoss web proxy (required after November 2022)
-export REQUESTS_CA_BUNDLE="/c/Program Files/Phantom/IBSA/mitm-ca-root-update.crt"
+#export REQUESTS_CA_BUNDLE="/c/Program Files/Phantom/IBSA/mitm-ca-root-update.crt"
 
 # AWS (requires corporate cert bundle)
 [ -r "/c/Program Files/Certificate Bundle/tls-ca-bundle.pem" ] && export AWS_CA_BUNDLE="/c/Program Files/Certificate Bundle/tls-ca-bundle.pem"
