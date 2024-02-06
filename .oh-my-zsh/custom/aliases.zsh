@@ -19,4 +19,3 @@ alias psu='ps u'
 alias pwd='echo $PWD'
 alias rm='rm -i'
 #alias wget='curl -O'
-
