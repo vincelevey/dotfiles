@@ -5,6 +5,7 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.shellIntegration.enabled": false,
     "workbench.colorTheme": "GitHub Dark",
@@ -13,5 +14,9 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
-    }
+    },
+
+    "cSpell.userWords": [
+        "color"
+    ]
 }
