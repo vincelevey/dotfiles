@@ -1,18 +1,29 @@
 {
+    "cSpell.language": "en-GB",
     "editor.fontFamily": "Iosevka, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
     "security.workspace.trust.enabled": false,
     "terminal.integrated.fontSize": 14,
     "window.confirmBeforeClose": "keyboardOnly",
     "workbench.colorTheme": "GitHub Dark",
+
+    "[git-commit]": {
+        "editor.rulers": [72, 50],
+        "editor.wordWrap": "off"
+    },
 
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
         "editor.wordBasedSuggestions": false
-    }
+    },
+
+    "cSpell.userWords": [
+        "color"
+    ]
 }

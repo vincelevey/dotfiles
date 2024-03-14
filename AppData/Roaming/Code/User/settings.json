@@ -11,6 +11,11 @@
     "workbench.colorTheme": "GitHub Dark",
     "workbench.startupEditor": "none",
 
+    "[git-commit]": {
+        "editor.rulers": [72, 50],
+        "editor.wordWrap": "off"
+    },
+
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
