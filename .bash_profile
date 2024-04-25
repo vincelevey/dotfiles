@@ -1,11 +1,11 @@
 # ssh-agent
 AGENT_ENV=~/.ssh/agent.env
 
-agent_load_env () {
+function agent_load_env () {
   test -r "${AGENT_ENV}" && source "${AGENT_ENV}" >/dev/null
 }
 
-agent_start () {
+function agent_start () {
   (umask 077; ssh-agent >| "${AGENT_ENV}")
   source "${AGENT_ENV}" >/dev/null
 }
@@ -34,21 +34,49 @@ function _ssh () {
 }
 complete -F _ssh ssh
 
+# path management
+# This function is usually present under Linux but missing under Git Bash.
+function pathmunge () {
+  case ":${PATH}:" in
+    *:"${1}":*)
+      ;;
+    *)
+      if [ $2 = 'after' ]; then
+        PATH="${PATH}:${1}"
+      else
+        PATH="${1}:${PATH}"
+      fi
+      ;;
+  esac
+}
+
 [ -r ~/.bashrc ] && source ~/.bashrc
 
-# GitHub CLI
-[ -d "/c/Program Files (x86)/GitHub CLI" ] && export PATH="${PATH}:/c/Program Files (x86)/GitHub CLI"
-
-# Python
-# don't do this, use the Windows py command instead.
-#[ -d "/c/Program Files/Python310" ] && export PATH="/c/Program Files/Python310:${PATH}"
+# add MSYS2 path, for locally installed tools like jq
+[ -d /c/msys64/mingw64/bin ] && pathmunge /c/msys64/mingw64/bin
 
 # Node.js
-[ -d "/c/Program Files/nodejs" ] && export PATH="/c/Program Files/nodejs:${PATH}"
-[ -d "${HOME}/AppData/Roaming/npm" ] && export PATH="${HOME}/AppData/Roaming/npm:${PATH}"
+[ -d "/c/Program Files/nodejs" ] && pathmunge "/c/Program Files/nodejs" after
+[ -d "${HOME}/AppData/Roaming/npm" ] && pathmunge "${HOME}/AppData/Roaming/npm" after
 
-# add MSYS2 path, for locally installed tools like jq
-[ -d /c/msys64/mingw64/bin ] && export PATH="${PATH}:/c/msys64/mingw64/bin"
+# Python
+# Generally, it's better to use the Windows py command for Python invocation,
+# however applications such as the AWS CDK require Python and associated
+# binaries to be in the path.
+if [ -d "/c/Program Files/Python312/Scripts" ]; then
+  pathmunge "/c/Program Files/Python312" after
+  pathmunge "/c/Program Files/Python312/Scripts" after
+fi
+[ -d "${HOME}/AppData/Roaming/Python/Python312/Scripts" ] && pathmunge "${HOME}/AppData/Roaming/Python/Python312/Scripts" after
+
+# cert for iBoss web proxy (required after November 2022)
+#export REQUESTS_CA_BUNDLE="/c/Program Files/Phantom/IBSA/mitm-ca-root-update.crt"
+
+# AWS (requires corporate cert bundle)
+[ -r "/c/Program Files/Certificate Bundle/tls-ca-bundle.pem" ] && export AWS_CA_BUNDLE="/c/Program Files/Certificate Bundle/tls-ca-bundle.pem"
+
+# GitHub CLI
+[ -d "/c/Program Files (x86)/GitHub CLI" ] && pathmunge "/c/Program Files (x86)/GitHub CLI" after
 
 # environment variables
 HTTP_PROXY='http://proxy-server:8080'
@@ -59,9 +87,4 @@ ftp_proxy=$HTTP_PROXY
 rsync_proxy=$HTTP_PROXY
 no_proxy='*.domain'
 export HTTP_PROXY HTTPS_PROXY http_proxy https_proxy ftp_proxy rsync_proxy no_proxy
-
-# cert for iBoss web proxy (required after November 2022)
-#export REQUESTS_CA_BUNDLE="/c/Program Files/Phantom/IBSA/mitm-ca-root-update.crt"
-
-# AWS (requires corporate cert bundle)
-[ -r "/c/Program Files/Certificate Bundle/tls-ca-bundle.pem" ] && export AWS_CA_BUNDLE="/c/Program Files/Certificate Bundle/tls-ca-bundle.pem"
+export PATH
