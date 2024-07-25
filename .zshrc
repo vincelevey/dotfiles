@@ -11,7 +11,6 @@ plugins=(
   brew
   git
   history
-  ripgrep
 )
 
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
